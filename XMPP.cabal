@@ -25,4 +25,4 @@ Library
                      Network.XMPP.Roster
 
   Build-depends:     base >= 4.0 && < 5, haskell98, random, utf8-string,
-                     network, parsec >= 2.0 && < 3, mtl, hsdns >= 1.4.1
+                     network, parsec == 3.*, mtl, hsdns >= 1.4.1
