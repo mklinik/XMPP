@@ -1,6 +1,8 @@
 module Network.XMPP.TCPConnection
                      ( TCPConnection
                      , openStream
+                     , sendStreamHeader
+                     , connectStream
                      , getStreamStart
                      )
     where
@@ -29,6 +31,11 @@ openStream server =
       svcs <- getSvcServer server
 
       h <- connectStream svcs
+      sendStreamHeader h server
+
+-- |Take an already established TCP connection and send the stream header
+sendStreamHeader :: Handle -> String -> IO TCPConnection
+sendStreamHeader h server = do
       hPutStr h $ xmlToString False $
               XML "stream:stream"
                       [("to",server),
